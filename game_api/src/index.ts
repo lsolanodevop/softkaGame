@@ -1,4 +1,4 @@
-import express, { Express, Request, Response } from "express";
+import express, { Express, Request, response, Response } from "express";
 import bodyParser from "body-parser";
 import helmet from "helmet";
 import dotenv from "dotenv";
@@ -23,6 +23,26 @@ app.get("/", (req: Request, res: Response) => {
   res.send("<h1> Let's start </h1>");
 });
 
+app.get("/getQuestions/:difficulty", (req: Request, res: Response) => { 
+  
+  const difficulty = JSON.parse(JSON.stringify(req.params.difficulty));
+  let db = new sqlite3.Database("softka.db", sqlite3.OPEN_READWRITE, (err: any) => {
+    if (err) {
+      return console.error(err.message);
+    }
+
+  });
+  let sql = `SELECT descripcion,choices,answer, categorie, difficulty FROM preguntas WHERE difficulty = ?`;
+    
+   
+  db.all(sql, difficulty, (err: any, rows: any) => {
+    if (err) {
+      console.error(err);
+    }
+    res.status(200).json(JSON.stringify(rows));
+  });
+});
+
 app.post("/create", (req: Request, res: Response) => {
   let formQuestion:any = JSON.parse(JSON.stringify(req.body));
   let newQuestion = new question();
@@ -31,7 +51,7 @@ app.post("/create", (req: Request, res: Response) => {
   newQuestion.answer = formQuestion.answer;
   newQuestion.categorie = formQuestion.categorie;
   newQuestion.difficulty = formQuestion.difficulty;
-  const success:boolean= createQuestion(newQuestion);
+  const success:boolean = createQuestion(newQuestion);
   if (success) {
     res.send({message: "Success"});
   } else {
@@ -59,21 +79,23 @@ function createQuestion(question: any):boolean {
   return status;
 }
 
-function getQuestions() {
-  let db = new sqlite3.Database("softka.db",sqlite3.OPEN_READWRITE, (err:any) => {
-    if (err) {
-      return console.error(err.message);
-    }
+// function getQuestions(difficulty: string): Object {
+//   let db = new sqlite3.Database("softka.db", sqlite3.OPEN_READWRITE, (err: any) => {
+//     if (err) {
+//       return console.error(err.message);
+//     }
+
+//   });
+//   let sql = `SELECT descripcion,choices,answer, categorie, difficulty FROM preguntas WHERE difficulty = ?`;
     
-  });
-  let sql = "SELECT * FROM preguntas";
-    
-    db.all(sql, [], (err:any, rows:any) => {
-      if (err) {
-        console.error(err);
-      }
-      console.log(JSON.stringify(rows[0]));
-    })
-}
+//   let result:Object = db.all(sql, difficulty, (err: any, rows: any) => {
+//     if (err) {
+//       console.error(err);
+//     }
+//     res.status(200).json(rows);;
+//   });
+//   console.log(result);
+//   return result;
+// }
 
 app.listen(PORT, () => console.log(`Running on ${PORT} ⚡`));

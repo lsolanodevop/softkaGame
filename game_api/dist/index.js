@@ -22,6 +22,21 @@ app.use((0, cors_1.default)({
 app.get("/", (req, res) => {
     res.send("<h1> Let's start </h1>");
 });
+app.get("/getQuestions/:difficulty", (req, res) => {
+    const difficulty = JSON.parse(JSON.stringify(req.params.difficulty));
+    let db = new sqlite3.Database("softka.db", sqlite3.OPEN_READWRITE, (err) => {
+        if (err) {
+            return console.error(err.message);
+        }
+    });
+    let sql = `SELECT descripcion,choices,answer, categorie, difficulty FROM preguntas WHERE difficulty = ?`;
+    db.all(sql, difficulty, (err, rows) => {
+        if (err) {
+            console.error(err);
+        }
+        res.status(200).json(JSON.stringify(rows));
+    });
+});
 app.post("/create", (req, res) => {
     let formQuestion = JSON.parse(JSON.stringify(req.body));
     let newQuestion = new question();
@@ -56,18 +71,20 @@ function createQuestion(question) {
     });
     return status;
 }
-function getQuestions() {
-    let db = new sqlite3.Database("softka.db", sqlite3.OPEN_READWRITE, (err) => {
-        if (err) {
-            return console.error(err.message);
-        }
-    });
-    let sql = "SELECT * FROM preguntas";
-    db.all(sql, [], (err, rows) => {
-        if (err) {
-            console.error(err);
-        }
-        console.log(JSON.stringify(rows[0]));
-    });
-}
+// function getQuestions(difficulty: string): Object {
+//   let db = new sqlite3.Database("softka.db", sqlite3.OPEN_READWRITE, (err: any) => {
+//     if (err) {
+//       return console.error(err.message);
+//     }
+//   });
+//   let sql = `SELECT descripcion,choices,answer, categorie, difficulty FROM preguntas WHERE difficulty = ?`;
+//   let result:Object = db.all(sql, difficulty, (err: any, rows: any) => {
+//     if (err) {
+//       console.error(err);
+//     }
+//     res.status(200).json(rows);;
+//   });
+//   console.log(result);
+//   return result;
+// }
 app.listen(PORT, () => console.log(`Running on ${PORT} ⚡`));
