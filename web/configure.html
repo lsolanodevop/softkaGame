@@ -22,18 +22,38 @@
         </ul>
     </nav>
     <div class="center">
-<div class="box">
+<div class="box_principal">
     <form class="fbox">
-        <img src="https://www.computerhope.com/jargon/s/settings-generic-gear.jpg" alt="">
-        <label for="categorie">Categorie</label><br>
-        <input type="text" id="categorie" placeholder="EJ: CARS"><br>
+        <img src="https://www.computerhope.com/jargon/s/settings-generic-gear.jpg" alt="" id="confimg">
+
+        <label for="Categoria">Categoria</label><br>
+        <input type="text" id="Categoria" placeholder="Ej: Curiosidades" required><br>
+
+        <label for="Descripcion">Descripcion</label><br>
+        <input type="text" id="Descripcion" placeholder="¿Cuantos dias tiene la semana?"><br>
+
+        <label for="resp1">Respuesta 1</label><br>
+        <input type="text" id="resp1" placeholder="7"><br>
+
+        <label for="resp2">Respuesta 2</label><br>
+        <input type="text" id="resp2" placeholder="5"><br>
+
+        <label for="resp3">Respuesta 3</label><br>
+        <input type="text" id="resp3" placeholder="8"><br>
+
+        <label for="resp4">Respuesta 4</label><br>
+        <input type="text" id="resp4" placeholder="9"><br>
+
+        <label for="respCorrecta">Respuesta Correcta</label><br>
+        <input type="text" id="respCorrecta" placeholder=""><br>
+
         <label for="difficulty">Difficulty</label><br>
         <select name="difficulty" id="difficulty">
-            <option value="Easy">Easy</option>
-            <option value="Average">Average</option>
-            <option value="Hard">Hard</option>
+            <option value="Easy">Facil</option>
+            <option value="Average">Media</option>
+            <option value="Hard">Dificil</option>
           </select>
-        <button type="button" class="slide-btn Sbutton" id="submit">Next</button>
+        <button type="sub" class="slide-btn Sbutton" id="submit">Submit</button>
     </form>    
 </div>
 </div>
@@ -44,6 +64,6 @@
         <p id="modalText"></p>
       </div>
 </div>
-<script type="text/javascript" src="dist/login.js"></script>
+<script type="text/javascript" src="app.js"></script>
 </body>
 </html>
