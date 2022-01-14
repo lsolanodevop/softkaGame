@@ -1,0 +1,3 @@
+1. Asegurarse de bajar la db nombrada Softka
+2. Correr el index.js que esta en dist usando node
+3. Correr la web usando un live server
