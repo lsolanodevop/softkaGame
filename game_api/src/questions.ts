@@ -1,19 +1,22 @@
+import { error } from "console";
+
+const fs = require("fs");
+
 class question {
   id?: number;
   description: string;
-  status?: boolean;
-  id_categorie?: number;
-  id_response?: number;
+  choices?: string[];
+  answer?: string;
 
-  constructor(descripcion: string) {
-    this.description = descripcion;
+  constructor() {
+    this.description = "¿De que color es el cielo?";
+    this.choices = ["Azul, Verde, Rojo, Amarillo"];
+    this.answer = "Azul";
   }
 
   getQuestion() {
     //llamado a la DB para conseguir las preguntas  
   }
-
-  createQuestion() { }
   
   updateQuestion() { }
 
