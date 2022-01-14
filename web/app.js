@@ -1,8 +1,9 @@
 const submitBTN = document.querySelector("#submit");
 const img = document.querySelector("#confimg");
+
+
 submitBTN.addEventListener("click",(event) =>{
     event.preventDefault();
-    
     let formSelector = {
         categorie: document.querySelector("#Categoria").value,
         description: document.querySelector("#Descripcion").value,
@@ -45,3 +46,4 @@ function validar(formSelector){
         return false;
     }
 }
+
