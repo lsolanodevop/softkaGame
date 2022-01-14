@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Quiz Game</title>
+    <title>Configure Game</title>
     <link rel="stylesheet" href="styles/web.css">
     <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@300&family=Roboto&display=swap" rel="stylesheet">
     <script src="https://kit.fontawesome.com/ff8083b5e7.js" crossorigin="anonymous"></script>
@@ -12,7 +12,7 @@
 <body>
     <nav class="navbar">   
     <!-- LOGO -->
-    <div class="logo" ><i class="fas fa-tv"></i> Quiz Game</div>
+    <div class="logo" ><i class="fas fa-tv"></i> Configure Game</div>
     
         <ul class="nav-links">
             <div class="menu">
@@ -22,22 +22,18 @@
         </ul>
     </nav>
     <div class="center">
-<div class="box_principal">
-    <form class="fbox_game">
-        <img src="https://images.unsplash.com/photo-1540835296355-c04f7a063cbb?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" alt="">
-        <h1> Quiz</h1>
-        <hr>
-        <h2 id="question">¿Quien es el mas lindo?</h2>
-        <div id="choices">
-            <button class="button">Amon</button>
-            <button class="button">Icaro</button>
-            <button class="button">Hela</button>
-            <button class="button">Leo</button>
-            </div>
-            <hr>
-            <footer>
-                <p id="progresss">Question x and y</p>
-            </footer>
+<div class="box">
+    <form class="fbox">
+        <img src="https://www.computerhope.com/jargon/s/settings-generic-gear.jpg" alt="">
+        <label for="categorie">Categorie</label><br>
+        <input type="text" id="categorie" placeholder="EJ: CARS"><br>
+        <label for="difficulty">Difficulty</label><br>
+        <select name="difficulty" id="difficulty">
+            <option value="Easy">Easy</option>
+            <option value="Average">Average</option>
+            <option value="Hard">Hard</option>
+          </select>
+        <button type="button" class="slide-btn Sbutton" id="submit">Next</button>
     </form>    
 </div>
 </div>
